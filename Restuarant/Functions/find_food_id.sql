@@ -1,0 +1,17 @@
+DELIMITER $$
+
+USE `restuarant`$$
+
+DROP FUNCTION IF EXISTS `FIND_FOOD`$$
+
+CREATE DEFINER=`root`@`localhost` FUNCTION `FIND_FOOD`(foood_name VARCHAR(30)) RETURNS INT(11)
+BEGIN
+DECLARE temp_id INT DEFAULT 0;
+SELECT ID INTO temp_id FROM food_item WHERE FOOD_NAME=foood_name;
+IF temp_id IS NULL THEN
+SET temp_id=0;
+END IF;
+RETURN temp_id;
+END$$
+
+DELIMITER ;
