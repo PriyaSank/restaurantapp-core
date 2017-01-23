@@ -1,0 +1,22 @@
+DELIMITER $$
+
+USE `restuarant`$$
+
+DROP FUNCTION IF EXISTS `FN_CHECK_FOOD_AVAILABLE`$$
+
+CREATE DEFINER=`root`@`localhost` FUNCTION `FN_CHECK_FOOD_AVAILABLE`(i_food_id INT,i_schedule_id INT,i_food_count INT) RETURNS TINYINT(1)
+BEGIN
+RETURN (SELECT
+(
+(
+(SELECT FOOD_COUNT FROM schedule_food_relation WHERE FOOD_ID=i_food_id AND SCHEDULE_ID=i_schedule_id)-
+(SELECT IFNULL((SELECT SUM(FOOD_COUNT) FROM order_food_details WHERE 
+TIME(`ORDER_TIMESTAMP`)>=(SELECT `FROM_TIME`FROM `seed_schedule` WHERE `ID`=i_schedule_id) AND
+TIME(`ORDER_TIMESTAMP`)<=(SELECT `TO_TIME`FROM `seed_schedule` WHERE `ID`=i_schedule_id) AND
+FOOD_ID=i_food_id AND ORDER_STATUS IN ('ORDER SUCCESS') AND 
+DATE(`ORDER_TIMESTAMP`)=CURDATE())
+,0)))-i_food_count)>=0
+);
+ END$$
+
+DELIMITER ;

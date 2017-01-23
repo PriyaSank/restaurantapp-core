@@ -1,0 +1,12 @@
+DELIMITER $$
+
+USE `restuarant`$$
+
+DROP FUNCTION IF EXISTS `FN_CHECK_ORDER_STATUS`$$
+
+CREATE DEFINER=`root`@`localhost` FUNCTION `FN_CHECK_ORDER_STATUS`(i_order_id INT) RETURNS VARCHAR(20) CHARSET latin1
+BEGIN
+RETURN (SELECT order_details.`STATUS` FROM order_details WHERE id=i_order_id);
+END$$
+
+DELIMITER ;
