@@ -14,7 +14,7 @@ IF l_order_id IS NOT NULL THEN
 UPDATE `order_details` SET `STATUS`='CANCELLED' WHERE `ID`=l_order_id;
 SET RES=CONCAT(RES,'Order cancelled');
 ELSE
-SET RES=CONCAT(RES,'Order cannot be cancelled for this seat.The order is',`FN_CHECK_ORDER_STATUS`(l_order_id));
+SET RES=CONCAT(RES,'Order cannot be cancelled for this seat.');
 END IF;
 ELSE
 SET RES=CONCAT(RES,'Invalid seat no.Seat no not found');
