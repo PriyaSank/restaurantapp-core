@@ -1,3 +1,11 @@
+/* THE TABLES FOR THIS SYSTEM ARE AS FOLLOW */
+seed_schedule_table.sql
+food_item_table.sql
+seat_configuration_table.sql
+schedule_food_relation_table.sql
+order_details_table.sql
+order_food_details_table.sql
+
 /*TO VIEW MENU_ITEMS IN THE RESTAURANT BY THE CUSTOMER*/
 /*VIEW_CODE*/
 menu_view.sql
