@@ -3,8 +3,8 @@
 CREATE TABLE `seed_schedule` (                                                                                                                                                                                             
                  `ID` int(11) NOT NULL,                                                                                                                                                                                                   
                  `SCHEDULE_ID` varchar(30) NOT NULL,                                                                                                                                                                                      
-                 `FROM_TIME` time DEFAULT NULL,                                                                                                                                                                                           
-                 `TO_TIME` time DEFAULT NULL,                                                                                                                                                                                             
+                 `FROM_TIME` time DEFAULT NOT NULL,                                                                                                                                                                                           
+                 `TO_TIME` time DEFAULT NOT NULL,                                                                                                                                                                                             
                  PRIMARY KEY (`ID`)                                                                                                                                                                                                       
                ) 
                                                                                                                                                                                   
